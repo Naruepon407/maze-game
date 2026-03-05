@@ -264,11 +264,28 @@ function jumpscare(){
 let scare=document.getElementById("scare")
 let sound=document.getElementById("scream")
 
+/* บังคับ fullscreen อีกครั้ง */
+if(document.documentElement.requestFullscreen){
+document.documentElement.requestFullscreen().catch(()=>{})
+}
+
+/* ซ่อนเมาส์ */
+document.body.style.cursor="none"
+
+/* แสดง jumpscare */
 scare.style.display="block"
 
+/* เปิดเสียง */
 sound.volume=1
 sound.currentTime=0
 sound.play().catch(()=>{})
+
+/* กันกด ESC ออก fullscreen */
+document.addEventListener("fullscreenchange",()=>{
+if(!document.fullscreenElement){
+document.documentElement.requestFullscreen().catch(()=>{})
+}
+})
 
 }
 

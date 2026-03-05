@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Precision Maze Challenge</title>
-
+<meta property="og:title" content="Precision Maze Challenge">
+<meta property="og:description" content="Can you complete the maze without touching the walls?">
+<meta property="og:image" content="https://naruepon407.github.io/maze-game/preview.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://naruepon407.github.io/maze-game/">
 <style>
 
 body{
@@ -48,6 +51,7 @@ height:500px;
 margin:40px auto;
 background:#222;
 border:4px solid white;
+transition:0.15s;
 }
 
 .wall{
@@ -133,6 +137,7 @@ object-fit:cover;
 <script>
 
 let maze=document.getElementById("maze")
+let startBox=document.getElementById("start")
 let level=1
 let started=false
 
@@ -149,7 +154,7 @@ loadLevel()
 
 }
 
-document.getElementById("start").addEventListener("mouseover",function(){
+startBox.addEventListener("mouseover",function(){
 started=true
 })
 
@@ -217,13 +222,24 @@ document.querySelectorAll(".wall").forEach(function(wall){
 wall.addEventListener("mouseover",function(){
 
 if(started){
-started=false
-alert("You touched the wall! Back to start.")
+resetToStart()
 }
 
 })
 
 })
+
+}
+
+function resetToStart(){
+
+started=false
+
+maze.style.boxShadow="0 0 40px red"
+
+setTimeout(()=>{
+maze.style.boxShadow="none"
+},150)
 
 }
 

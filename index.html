@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Precision Maze Challenge</title>
+
+<style>
+
+body{
+margin:0;
+background:#111;
+color:white;
+font-family:Arial;
+text-align:center;
+overflow:hidden;
+}
+
+#menu{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+}
+
+button{
+padding:18px 40px;
+font-size:22px;
+background:#00ff99;
+border:none;
+cursor:pointer;
+border-radius:10px;
+}
+
+#game{
+display:none;
+}
+
+#levelText{
+margin-top:20px;
+font-size:26px;
+}
+
+#maze{
+position:relative;
+width:900px;
+height:500px;
+margin:40px auto;
+background:#222;
+border:4px solid white;
+}
+
+.wall{
+position:absolute;
+background:#ff4444;
+}
+
+.start{
+position:absolute;
+left:10px;
+top:220px;
+width:80px;
+height:60px;
+background:#00ff99;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:bold;
+}
+
+.finish{
+position:absolute;
+right:10px;
+top:220px;
+width:80px;
+height:60px;
+background:#00aaff;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:bold;
+}
+
+#scare{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:black;
+display:none;
+z-index:9999;
+}
+
+#scare img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="menu">
+<h1>Precision Maze Challenge</h1>
+<p>Complete all 3 levels without touching the walls.</p>
+<button onclick="startGame()">START GAME</button>
+</div>
+
+<div id="game">
+
+<div id="levelText">Level 1</div>
+
+<div id="maze">
+
+<div class="start" id="start">START</div>
+<div class="finish" id="finish">END</div>
+
+</div>
+
+</div>
+
+<div id="scare">
+<img src="scary.png">
+<audio id="scream">
+<source src="scream.mp3" type="audio/mpeg">
+</audio>
+</div>
+
+<script>
+
+let maze=document.getElementById("maze")
+let level=1
+let started=false
+
+function startGame(){
+
+document.getElementById("menu").style.display="none"
+document.getElementById("game").style.display="block"
+
+if(document.documentElement.requestFullscreen){
+document.documentElement.requestFullscreen()
+}
+
+loadLevel()
+
+}
+
+document.getElementById("start").addEventListener("mouseover",function(){
+started=true
+})
+
+function loadLevel(){
+
+maze.querySelectorAll(".wall").forEach(w=>w.remove())
+
+/* LEVEL 1 */
+
+if(level==1){
+
+createWall(150,0,30,400)
+createWall(300,100,30,400)
+
+}
+
+/* LEVEL 2 */
+
+if(level==2){
+
+createWall(150,0,30,400)
+createWall(300,100,30,400)
+createWall(450,0,30,400)
+createWall(600,100,30,400)
+
+}
+
+/* LEVEL 3 */
+
+if(level==3){
+
+createWall(150,0,30,400)
+createWall(260,150,30,400)
+createWall(370,0,30,400)
+createWall(480,150,30,400)
+createWall(590,0,30,400)
+createWall(700,150,30,400)
+
+}
+
+document.getElementById("levelText").innerText="Level "+level
+
+attachWallEvents()
+
+}
+
+function createWall(x,y,w,h){
+
+let wall=document.createElement("div")
+
+wall.className="wall"
+wall.style.left=x+"px"
+wall.style.top=y+"px"
+wall.style.width=w+"px"
+wall.style.height=h+"px"
+
+maze.appendChild(wall)
+
+}
+
+function attachWallEvents(){
+
+document.querySelectorAll(".wall").forEach(function(wall){
+
+wall.addEventListener("mouseover",function(){
+
+if(started){
+started=false
+alert("You touched the wall! Back to start.")
+}
+
+})
+
+})
+
+}
+
+document.getElementById("finish").addEventListener("mouseover",function(){
+
+if(!started) return
+
+level++
+
+if(level>3){
+jumpscare()
+return
+}
+
+started=false
+loadLevel()
+
+})
+
+function jumpscare(){
+
+let scare=document.getElementById("scare")
+let sound=document.getElementById("scream")
+
+scare.style.display="block"
+
+sound.volume=1
+sound.currentTime=0
+sound.play().catch(()=>{})
+
+}
+
+</script>
+
+</body>
+</html>

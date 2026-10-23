@@ -3,21 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#090b12">
-<title>Precision Maze — The Focus Test</title>
-<meta property="og:title" content="Precision Maze — The Focus Test">
-<meta property="og:description" content="Three levels. One steady hand. Can you reach the exit?">
-<meta property="og:image" content="https://naruepon407.github.io/maze-game/preview.png">
+<meta name="theme-color" content="#080a10">
+<title>อย่ากะพริบตา — Focus Test</title>
+<meta property="og:title" content="อย่ากะพริบตา — Focus Test">
+<meta property="og:description" content="เพ่งเล็งให้อยู่ในเป้า แล้วลองดูว่าจะเกิดอะไรขึ้น">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://naruepon407.github.io/maze-game/">
 <style>
 :root{
   color-scheme:dark;
-  --bg:#090b12;
+  --bg:#080a10;
   --panel:#111520;
-  --panel-soft:#151a27;
   --line:rgba(255,255,255,.09);
-  --muted:#8d95a8;
+  --muted:#929bad;
   --text:#f4f6fb;
   --mint:#7af5c4;
   --cyan:#74d9ff;
@@ -29,25 +27,24 @@
 body{
   min-height:100vh;
   margin:0;
-  padding:28px 20px;
+  padding:24px 20px;
   overflow-x:hidden;
   color:var(--text);
   background:
-    radial-gradient(ellipse at 50% -20%,rgba(54,96,125,.26),transparent 55%),
+    radial-gradient(ellipse at 50% -20%,rgba(54,96,125,.25),transparent 55%),
     radial-gradient(ellipse at 100% 100%,rgba(37,65,87,.12),transparent 45%),
     var(--bg);
   font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
 }
 
 button{font:inherit}
-
-.shell{width:min(100%,1040px);margin:0 auto}
+.shell{width:min(100%,960px);margin:0 auto}
 
 .topbar{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  margin-bottom:52px;
+  margin-bottom:38px;
 }
 
 .brand{
@@ -99,22 +96,22 @@ button{font:inherit}
   box-shadow:0 0 10px var(--mint);
 }
 
-#menu{
+#intro,#game{
   max-width:760px;
   margin:0 auto;
-  padding:36px 0 50px;
   text-align:center;
-  animation:rise-in .65s ease both;
+  animation:rise-in .55s ease both;
 }
 
+#game{display:none}
 .eyebrow{color:var(--mint)}
 
 h1{
-  margin:20px 0 14px;
-  font-size:clamp(46px,8vw,82px);
+  margin:19px 0 14px;
+  font-size:clamp(45px,8vw,76px);
   font-weight:820;
   letter-spacing:-.075em;
-  line-height:.98;
+  line-height:1;
 }
 
 h1 span{
@@ -124,40 +121,44 @@ h1 span{
   -webkit-background-clip:text;
 }
 
-.intro{
-  max-width:500px;
+h2{
+  margin:9px 0 8px;
+  font-size:clamp(24px,4vw,34px);
+  letter-spacing:-.045em;
+}
+
+.copy{
+  max-width:520px;
   margin:0 auto;
   color:#9ba4b7;
-  font-size:16px;
-  line-height:1.75;
+  font-size:15px;
+  line-height:1.8;
 }
 
-.feature-row{
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  margin:29px 0 34px;
-  flex-wrap:wrap;
+.instruction-card{
+  width:min(100%,510px);
+  margin:26px auto 22px;
+  padding:17px;
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:16px;
+  background:linear-gradient(145deg,rgba(22,27,40,.9),rgba(13,16,24,.9));
 }
 
-.feature{
-  padding:9px 13px;
-  border:1px solid var(--line);
-  border-radius:99px;
-  color:#c0c7d6;
-  background:rgba(255,255,255,.025);
-  font-size:12px;
+.instruction-icon{
+  margin-bottom:7px;
+  color:var(--mint);
+  font-size:25px;
 }
 
-.feature strong{color:var(--text)}
+.instruction-title{font-size:15px;font-weight:740}
+.instruction-detail{margin-top:5px;color:#9099ab;font-size:13px;line-height:1.7}
 
 .primary-button,.secondary-button{
   display:inline-flex;
-  min-height:52px;
+  min-height:50px;
   align-items:center;
   justify-content:center;
-  gap:10px;
-  border:0;
+  gap:9px;
   border-radius:13px;
   cursor:pointer;
   font-weight:760;
@@ -165,7 +166,8 @@ h1 span{
 }
 
 .primary-button{
-  padding:0 25px;
+  padding:0 24px;
+  border:0;
   color:#07120f;
   background:linear-gradient(115deg,var(--mint),#a5f8dc);
   box-shadow:0 10px 34px rgba(122,245,196,.18);
@@ -175,37 +177,6 @@ h1 span{
   transform:translateY(-2px);
   box-shadow:0 14px 38px rgba(122,245,196,.28);
 }
-
-.primary-button:active,.secondary-button:active{transform:translateY(0)}
-
-button:focus-visible{
-  outline:3px solid rgba(116,217,255,.8);
-  outline-offset:4px;
-}
-
-.hint{
-  margin-top:17px;
-  color:#677084;
-  font-size:12px;
-}
-
-#game{display:none;animation:rise-in .4s ease both}
-
-.game-heading{
-  display:flex;
-  align-items:flex-end;
-  justify-content:space-between;
-  gap:20px;
-  margin-bottom:20px;
-}
-
-.game-heading h2{
-  margin:8px 0 0;
-  font-size:clamp(24px,4vw,34px);
-  letter-spacing:-.045em;
-}
-
-.game-heading .eyebrow{color:#a6afc1}
 
 .secondary-button{
   min-height:40px;
@@ -218,178 +189,198 @@ button:focus-visible{
 
 .secondary-button:hover{background:rgba(255,255,255,.08)}
 
+button:focus-visible{
+  outline:3px solid rgba(116,217,255,.8);
+  outline-offset:4px;
+}
+
+.warning{
+  margin-top:16px;
+  color:#7d879a;
+  font-size:12px;
+}
+
+.game-heading{margin-bottom:17px}
+.game-heading .eyebrow{color:#a6afc1}
+
 .game-panel{
-  overflow:hidden;
-  padding:17px;
+  padding:16px;
   border:1px solid rgba(255,255,255,.1);
   border-radius:22px;
   background:linear-gradient(145deg,rgba(22,27,40,.96),rgba(13,16,24,.96));
   box-shadow:0 28px 80px rgba(0,0,0,.36),inset 0 1px rgba(255,255,255,.04);
 }
 
-.hud{
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr;
-  gap:10px;
-  margin-bottom:15px;
-}
-
-.hud-card{
-  min-width:0;
-  padding:12px 15px;
-  border:1px solid rgba(255,255,255,.065);
-  border-radius:13px;
-  background:rgba(255,255,255,.025);
-}
-
-.hud-label{
-  display:block;
-  margin-bottom:6px;
-  color:#798296;
-  font-size:10px;
-  font-weight:750;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-}
-
-.hud-value{
+.game-status{
   display:flex;
   align-items:center;
-  gap:7px;
+  justify-content:space-between;
+  gap:12px;
+  margin:0 2px 12px;
+  color:#aeb6c5;
+  font-size:12px;
+}
+
+#stageText,#hitCount{
   color:#f0f3f8;
   font-size:17px;
   font-variant-numeric:tabular-nums;
   font-weight:760;
 }
 
-#mistakesValue{color:var(--red)}
+.status-count{display:flex;align-items:center;gap:18px}
 
 .progress-track{
-  height:3px;
-  margin-bottom:15px;
+  height:4px;
+  margin-bottom:13px;
   overflow:hidden;
   border-radius:9px;
   background:rgba(255,255,255,.07);
 }
 
-#progressBar{
+#progress{
   width:0;
   height:100%;
   border-radius:inherit;
   background:linear-gradient(90deg,var(--mint),var(--cyan));
   box-shadow:0 0 12px rgba(122,245,196,.4);
-  transition:width .35s ease;
+  transition:width .1s linear;
 }
 
-#maze{
+#playfield{
   position:relative;
   width:100%;
-  aspect-ratio:9/5;
+  height:clamp(300px,53vh,440px);
   overflow:hidden;
   border:1px solid rgba(156,177,205,.17);
-  border-radius:13px;
-  background-color:#0c111a;
+  border-radius:14px;
+  background-color:#0a0d14;
   background-image:
-    linear-gradient(rgba(115,151,174,.055) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(115,151,174,.055) 1px,transparent 1px),
-    radial-gradient(ellipse at 50% 50%,rgba(46,83,101,.16),transparent 70%);
-  background-size:32px 32px,32px 32px,100% 100%;
-  box-shadow:inset 0 0 55px rgba(0,0,0,.42);
-  transition:border-color .2s,box-shadow .2s;
+    radial-gradient(circle,rgba(116,151,174,.12) 1px,transparent 1.5px),
+    radial-gradient(ellipse at 50% 50%,rgba(46,83,101,.1),transparent 72%);
+  background-size:26px 26px,100% 100%;
+  cursor:crosshair;
   touch-action:none;
-}
-
-#maze.is-hit{
-  border-color:rgba(255,102,125,.7);
-  box-shadow:inset 0 0 50px rgba(255,70,98,.13),0 0 28px rgba(255,70,98,.16);
-  animation:shake .24s ease;
-}
-
-.wall{
-  position:absolute;
-  z-index:2;
-  border:1px solid rgba(255,146,158,.72);
-  border-radius:4px;
-  background:linear-gradient(135deg,#ff7185,#d94261);
-  box-shadow:0 0 16px rgba(255,76,105,.22),inset 0 1px rgba(255,255,255,.28);
-}
-
-.zone{
-  position:absolute;
-  z-index:1;
-  display:flex;
-  width:9%;
-  height:12%;
-  align-items:center;
-  justify-content:center;
-  border-radius:8px;
-  font-size:clamp(9px,1.25vw,12px);
-  font-weight:850;
-  letter-spacing:.08em;
   user-select:none;
 }
 
-#start{
-  top:44%;
-  left:1.2%;
-  border:1px solid rgba(122,245,196,.7);
-  color:#a4ffda;
-  background:rgba(65,203,153,.16);
-  box-shadow:0 0 22px rgba(122,245,196,.12),inset 0 0 18px rgba(122,245,196,.07);
+#playfield.is-locked{
+  border-color:rgba(122,245,196,.44);
+  box-shadow:inset 0 0 50px rgba(122,245,196,.065);
 }
 
-#finish{
-  top:44%;
-  right:1.2%;
-  border:1px solid rgba(116,217,255,.66);
-  color:#a5eaff;
-  background:rgba(67,171,211,.15);
-  box-shadow:0 0 22px rgba(116,217,255,.11),inset 0 0 18px rgba(116,217,255,.06);
+#target{
+  position:absolute;
+  z-index:1;
+  width:66px;
+  height:66px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(122,245,196,.55);
+  border-radius:50%;
+  background:rgba(122,245,196,.08);
+  box-shadow:0 0 26px rgba(122,245,196,.2),inset 0 0 16px rgba(122,245,196,.1);
+  cursor:crosshair;
+  transform:translate(-50%,-50%);
+  transition:filter .12s ease,transform .12s ease;
 }
 
-.maze-caption{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  padding:14px 3px 1px;
-  color:#858da0;
-  font-size:12px;
+#target:active{
+  filter:brightness(1.7);
+  transform:translate(-50%,-50%) scale(.82);
 }
 
-.legend{display:flex;align-items:center;gap:15px}
-.legend-item{display:inline-flex;align-items:center;gap:6px}
-.legend-dot{width:7px;height:7px;border-radius:50%}
-.legend-start{background:var(--mint);box-shadow:0 0 8px var(--mint)}
-.legend-end{background:var(--cyan);box-shadow:0 0 8px var(--cyan)}
+#target::before,#target::after{
+  position:absolute;
+  content:"";
+  border:1px solid rgba(122,245,196,.3);
+  border-radius:50%;
+}
 
-#notice{
-  min-height:21px;
-  margin-top:12px;
-  color:#aab2c1;
-  text-align:center;
+#target::before{inset:-8px}
+#target::after{inset:10px}
+
+#target-dot{
+  z-index:1;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:#caffed;
+  box-shadow:0 0 15px 5px rgba(122,245,196,.72);
+}
+
+.crosshair{
+  position:absolute;
+  z-index:2;
+  width:24px;
+  height:24px;
+  display:none;
+  border:1px solid rgba(116,217,255,.9);
+  border-radius:50%;
+  box-shadow:0 0 13px rgba(116,217,255,.42);
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+}
+
+.crosshair::before,.crosshair::after{
+  position:absolute;
+  top:50%;
+  left:50%;
+  content:"";
+  background:rgba(116,217,255,.88);
+  transform:translate(-50%,-50%);
+}
+
+.crosshair::before{width:32px;height:1px}
+.crosshair::after{width:1px;height:32px}
+
+.field-hint{
+  position:absolute;
+  right:12px;
+  bottom:10px;
+  left:12px;
+  color:#798397;
+  font-size:11px;
+  pointer-events:none;
+}
+
+.game-message{
+  min-height:23px;
+  margin:12px 0 0;
+  color:#abb4c4;
   font-size:13px;
 }
 
-#scare{
+.game-actions{margin-top:12px}
+
+#jumpscare{
   position:fixed;
-  z-index:10;
+  z-index:20;
   inset:0;
   display:none;
+  overflow:hidden;
   background:#000;
+  cursor:pointer;
 }
 
-#scare img{width:100%;height:100%;object-fit:cover}
+#jumpscare.is-visible{display:grid;place-items:center}
 
-#scareMessage{
+#jumpscare img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  animation:scare-in .18s ease-out both;
+}
+
+#jumpscare-hint{
   position:absolute;
-  right:20px;
-  bottom:20px;
+  right:18px;
+  bottom:18px;
   padding:10px 13px;
-  border:1px solid rgba(255,255,255,.22);
+  border:1px solid rgba(255,255,255,.24);
   border-radius:10px;
   color:#fff;
-  background:rgba(0,0,0,.58);
+  background:rgba(0,0,0,.62);
   font-size:12px;
 }
 
@@ -410,9 +401,9 @@ button:focus-visible{
   to{opacity:1;transform:translateY(0)}
 }
 
-@keyframes shake{
-  25%{transform:translateX(-3px)}
-  75%{transform:translateX(3px)}
+@keyframes scare-in{
+  from{opacity:.12;transform:scale(1.12)}
+  to{opacity:1;transform:scale(1)}
 }
 
 @media(max-width:600px){
@@ -420,20 +411,10 @@ button:focus-visible{
   .topbar{margin-bottom:25px}
   .brand{font-size:11px}
   .status-pill{padding:8px 10px;font-size:9px}
-  #menu{padding:38px 0}
-  .intro{font-size:14px}
-  .feature-row{margin:23px 0 28px}
-  .game-heading{align-items:center;margin-bottom:14px}
+  .copy{font-size:14px}
+  .instruction-card{margin:21px auto 18px;padding:14px}
   .game-panel{padding:10px;border-radius:17px}
-  .hud{gap:6px;margin-bottom:10px}
-  .hud-card{padding:10px 8px;border-radius:10px}
-  .hud-label{font-size:8px;letter-spacing:.08em}
-  .hud-value{font-size:14px}
-  .progress-track{margin-bottom:10px}
-  #maze{border-radius:9px;background-size:22px 22px,22px 22px,100% 100%}
-  .maze-caption{align-items:flex-start;font-size:10px}
-  .legend{gap:9px}
-  .secondary-button{min-height:36px;padding:0 10px}
+  #playfield{height:clamp(300px,52vh,390px);border-radius:10px}
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -444,228 +425,270 @@ button:focus-visible{
 <body>
 <main class="shell">
   <header class="topbar">
-    <div class="brand"><span class="brand-mark" aria-hidden="true">⌁</span> Precision Maze</div>
-    <div class="status-pill"><span class="status-dot" aria-hidden="true"></span> Focus mode</div>
+    <div class="brand"><span class="brand-mark" aria-hidden="true">◎</span> Focus Test</div>
+    <div class="status-pill"><span class="status-dot" aria-hidden="true"></span> ทดสอบสมาธิ</div>
   </header>
 
-  <section id="menu" aria-labelledby="mainTitle">
-    <div class="eyebrow">A little test of nerve</div>
-    <h1 id="mainTitle">Steady hand.<br><span>Clear mind.</span></h1>
-    <p class="intro">นำทางผ่านเขาวงกตให้ถึงทางออก อย่าให้โดนกำแพง — มีทั้งหมด 3 ด่าน ความแม่นยำของคุณจะพาไปได้ไกลแค่ไหน?</p>
-    <div class="feature-row" aria-label="รายละเอียดเกม">
-      <span class="feature"><strong>3</strong> ด่าน</span>
-      <span class="feature">ใช้เมาส์หรือแตะหน้าจอ</span>
-      <span class="feature">ระวังกำแพงสีแดง</span>
+  <section id="intro" aria-labelledby="mainTitle">
+    <div class="eyebrow">Can you hit every target?</div>
+    <h1 id="mainTitle">เล็งให้แม่น<br><span>แล้วยิงให้โดน</span></h1>
+    <p class="copy">คลิกหรือแตะเป้าเรืองแสงที่เคลื่อนที่ให้ครบ 5 ด่าน แต่ละด่านเริ่มเร็วขึ้น และมีจังหวะสับหลอกด้วย</p>
+    <div class="instruction-card">
+      <div class="instruction-icon" aria-hidden="true">⌖</div>
+      <div class="instruction-title">เล็งแล้วคลิก หรือแตะที่เป้าให้โดน</div>
+      <div class="instruction-detail">ยิงให้โดน 3 ครั้งเพื่อผ่านแต่ละด่าน · เป้าสับทิศหลอกได้<br>แต่ละด่านจะเริ่มเร็วกว่าเดิม</div>
     </div>
-    <button class="primary-button" id="startButton" type="button">เริ่มเล่น <span aria-hidden="true">→</span></button>
-    <div class="hint">เริ่มจากช่องสีเขียว แล้วไปให้ถึงช่องสีฟ้า</div>
+    <button class="primary-button" id="startButton" type="button">เริ่มทดสอบ <span aria-hidden="true">→</span></button>
+    <div class="warning">คำเตือน: เกมมีภาพและเสียงตกใจ · ปรับเสียงตามความเหมาะสม · กด Esc หรือแตะจอเพื่อออก</div>
   </section>
 
-  <section id="game" aria-label="เกมเขาวงกต">
+  <section id="game" aria-labelledby="gameTitle">
     <div class="game-heading">
-      <div>
-        <div class="eyebrow">The focus test</div>
-        <h2>พาไปให้ถึงทางออก</h2>
-      </div>
-      <button class="secondary-button" id="restartButton" type="button">↻ <span>เริ่มใหม่</span></button>
+      <div class="eyebrow">Aim and fire</div>
+        <h2 id="gameTitle">ยิงเป้าให้ครบ 5 ด่าน</h2>
     </div>
-
     <div class="game-panel">
-      <div class="hud" aria-label="สถานะเกม">
-        <div class="hud-card">
-          <span class="hud-label">ด่าน</span>
-          <span class="hud-value" id="levelText">01 <span style="color:#778196;font-size:12px">/ 03</span></span>
-        </div>
-        <div class="hud-card">
-          <span class="hud-label">เวลา</span>
-          <span class="hud-value" id="timeValue">00:00</span>
-        </div>
-        <div class="hud-card">
-          <span class="hud-label">พลาด</span>
-          <span class="hud-value" id="mistakesValue">0</span>
-        </div>
+      <div class="game-status">
+        <span id="statusText">เล็งเป้าแล้วคลิกเพื่อยิง</span>
+        <span class="status-count"><span id="stageText">ด่าน 1 / 5</span><span id="hitCount">0 / 3</span></span>
       </div>
       <div class="progress-track" aria-label="ความคืบหน้า">
-        <div id="progressBar"></div>
+        <div id="progress"></div>
       </div>
-
-      <div id="maze" role="application" aria-label="สนามเขาวงกต ใช้ตัวชี้จากจุดเริ่มไปยังทางออก โดยห้ามแตะกำแพงสีแดง">
-        <div class="zone" id="start">START</div>
-        <div class="zone" id="finish">EXIT</div>
+      <div id="playfield" role="application" aria-label="คลิกหรือแตะเป้าเรืองแสงที่กำลังเคลื่อนที่เพื่อยิง">
+        <div id="target" aria-label="เป้าหมาย"><span id="target-dot"></span></div>
+        <div class="crosshair" id="crosshair" aria-hidden="true"></div>
+        <div class="field-hint" id="fieldHint">คลิกหรือแตะที่เป้าเพื่อยิง</div>
       </div>
-
-      <div class="maze-caption">
-        <span id="instruction">วางตัวชี้บน START เพื่อเริ่มด่าน</span>
-        <span class="legend" aria-hidden="true">
-          <span class="legend-item"><span class="legend-dot legend-start"></span>เริ่ม</span>
-          <span class="legend-item"><span class="legend-dot legend-end"></span>ทางออก</span>
-        </span>
+      <p class="game-message" id="gameMessage" role="status" aria-live="polite">เป้าจะเริ่มเคลื่อนที่ทันที — เล็งให้ดี!</p>
+      <div class="game-actions">
+        <button class="secondary-button" id="restartButton" type="button">เริ่มใหม่</button>
       </div>
-      <div id="notice" role="status" aria-live="polite"></div>
     </div>
   </section>
 </main>
 
-<div id="scare" role="dialog" aria-modal="true" aria-label="เซอร์ไพรส์!">
-  <img src="scary.png" alt="เซอร์ไพรส์! คุณผ่านครบทุกด่านแล้ว">
-  <div id="scareMessage">กด Esc หรือแตะหน้าจอเพื่อกลับ</div>
-  <audio id="scream" preload="auto">
-    <source src="scream.mp3" type="audio/mpeg">
-  </audio>
+<div id="jumpscare" role="dialog" aria-modal="true" aria-label="เซอร์ไพรส์! แตะหน้าจอหรือกด Esc เพื่อปิด">
+  <img src="scary.png" alt="ภาพเซอร์ไพรส์ตกใจ">
+  <div id="jumpscare-hint">แตะหน้าจอหรือกด Esc เพื่อปิด</div>
 </div>
+<audio id="scream" preload="auto">
+  <source src="scream.mp3" type="audio/mpeg">
+</audio>
 
 <script>
-const maze = document.getElementById("maze");
-const startBox = document.getElementById("start");
-const finishBox = document.getElementById("finish");
-const levelText = document.getElementById("levelText");
-const timeValue = document.getElementById("timeValue");
-const mistakesValue = document.getElementById("mistakesValue");
-const progressBar = document.getElementById("progressBar");
-const instruction = document.getElementById("instruction");
-const notice = document.getElementById("notice");
+const intro = document.getElementById("intro");
 const game = document.getElementById("game");
-const menu = document.getElementById("menu");
-const scare = document.getElementById("scare");
-const sound = document.getElementById("scream");
-
-let level = 1;
-let started = false;
-let finished = false;
-let mistakes = 0;
-let runStartedAt = 0;
-let timerId = 0;
-let hitTimeout = 0;
-
-const levels = [
-  [[150, 0, 26, 340], [300, 160, 26, 340]],
-  [[130, 0, 25, 340], [275, 160, 25, 340], [420, 0, 25, 340], [565, 160, 25, 340]],
-  [[115, 0, 24, 340], [245, 160, 24, 340], [375, 0, 24, 340], [505, 160, 24, 340], [635, 0, 24, 340], [765, 160, 24, 340]]
+const playfield = document.getElementById("playfield");
+const target = document.getElementById("target");
+const crosshair = document.getElementById("crosshair");
+const progressBar = document.getElementById("progress");
+const statusText = document.getElementById("statusText");
+const stageText = document.getElementById("stageText");
+const hitCount = document.getElementById("hitCount");
+const gameMessage = document.getElementById("gameMessage");
+const fieldHint = document.getElementById("fieldHint");
+const jumpscare = document.getElementById("jumpscare");
+const scream = document.getElementById("scream");
+const stageCount = 5;
+const hitsPerStage = 3;
+const stageSettings = [
+  { speed: 0.48, size: 92, feint: 0, label: "ฝึกหัด" },
+  { speed: 0.72, size: 82, feint: 0.2, label: "ง่าย" },
+  { speed: 1.02, size: 72, feint: 0.45, label: "ปานกลาง" },
+  { speed: 1.42, size: 62, feint: 0.72, label: "ยาก" },
+  { speed: 1.7, size: 64, feint: 0.78, label: "ยากสุด" }
 ];
 
+let isPlaying = false;
+let isScaring = false;
+let pointerX = null;
+let pointerY = null;
+let lastFrame = 0;
+let stage = 1;
+let hits = 0;
+let stageStartedAt = null;
+let stagePhase = 0;
+let animationId = 0;
+
 function startGame() {
-  menu.style.display = "none";
+  intro.style.display = "none";
   game.style.display = "block";
-  resetRun();
+  resetGame();
+
+  if (document.documentElement.requestFullscreen) {
+    document.documentElement.requestFullscreen().catch(() => {
+      gameMessage.textContent = "เข้าเต็มจอไม่สำเร็จ แต่ยังเล่นได้ตามปกติ";
+    });
+  }
 }
 
-function resetRun() {
-  level = 1;
-  mistakes = 0;
-  started = false;
-  finished = false;
-  runStartedAt = Date.now();
-  timeValue.textContent = "00:00";
-  mistakesValue.textContent = "0";
-  notice.textContent = "";
-  clearInterval(timerId);
-  timerId = window.setInterval(updateTimer, 250);
-  loadLevel();
+function resetGame() {
+  isPlaying = true;
+  isScaring = false;
+  stage = 1;
+  hits = 0;
+  lastFrame = 0;
+  stageStartedAt = null;
+  stagePhase = Math.random() * Math.PI * 2;
+  pointerX = null;
+  pointerY = null;
+  applyStageSettings();
+  jumpscare.classList.remove("is-visible");
+  playfield.classList.remove("is-locked");
+  crosshair.style.display = "none";
+  target.style.left = `${playfield.clientWidth / 2}px`;
+  target.style.top = `${playfield.clientHeight / 2}px`;
+  progressBar.style.width = "0%";
+  stageText.textContent = `ด่าน ${stage} / ${stageCount}`;
+  hitCount.textContent = `${hits} / ${hitsPerStage}`;
+  statusText.textContent = `ด่าน ${stage} · ${stageSettings[stage - 1].label}`;
+  gameMessage.textContent = "เป้าจะเริ่มเคลื่อนที่ทันที — เล็งให้ดี!";
+  fieldHint.textContent = "คลิกหรือแตะที่เป้าเพื่อยิง";
+  applyStageSettings();
+  cancelAnimationFrame(animationId);
+  animationId = requestAnimationFrame(updateGame);
 }
 
-function updateTimer() {
-  if (finished) return;
-  const elapsed = Math.floor((Date.now() - runStartedAt) / 1000);
-  const minutes = String(Math.floor(elapsed / 60)).padStart(2, "0");
-  const seconds = String(elapsed % 60).padStart(2, "0");
-  timeValue.textContent = `${minutes}:${seconds}`;
+function handlePointerMove(event) {
+  if (!isPlaying) return;
+  const bounds = playfield.getBoundingClientRect();
+  pointerX = event.clientX - bounds.left;
+  pointerY = event.clientY - bounds.top;
+  crosshair.style.display = "block";
+  crosshair.style.left = `${pointerX}px`;
+  crosshair.style.top = `${pointerY}px`;
 }
 
-function loadLevel() {
-  maze.querySelectorAll(".wall").forEach(wall => wall.remove());
+function handleShot(event) {
+  if (!isPlaying || event.button !== 0) return;
+  const bounds = playfield.getBoundingClientRect();
+  const shotX = event.clientX - bounds.left;
+  const shotY = event.clientY - bounds.top;
+  const targetX = parseFloat(target.style.left);
+  const targetY = parseFloat(target.style.top);
+  if (!Number.isFinite(targetX) || !Number.isFinite(targetY)) return;
+  const targetRadius = stageSettings[stage - 1].size / 2;
 
-  levels[level - 1].forEach(([x, y, width, height]) => {
-    const wall = document.createElement("div");
-    wall.className = "wall";
-    wall.setAttribute("aria-hidden", "true");
-    wall.style.left = `${(x / 900) * 100}%`;
-    wall.style.top = `${(y / 500) * 100}%`;
-    wall.style.width = `${(width / 900) * 100}%`;
-    wall.style.height = `${(height / 500) * 100}%`;
-    maze.appendChild(wall);
-  });
-
-  levelText.innerHTML = `${String(level).padStart(2, "0")} <span style="color:#778196;font-size:12px">/ 03</span>`;
-  progressBar.style.width = `${((level - 1) / 3) * 100}%`;
-  instruction.textContent = "วางตัวชี้บน START เพื่อเริ่มด่าน";
-}
-
-function handleMazePointer(event) {
-  const target = event.target instanceof Element ? event.target.closest(".wall, #start, #finish") : null;
-  if (!target) return;
-
-  if (target.id === "start") {
-    if (!started) {
-      started = true;
-      notice.textContent = "";
-      instruction.textContent = "ดีมาก — เลี้ยวหลบกำแพงแล้วไปให้ถึง EXIT";
-    }
+  if (Math.hypot(shotX - targetX, shotY - targetY) > targetRadius) {
+    gameMessage.textContent = "พลาด! เล็งให้ตรงเป้าก่อนยิง";
+    playfield.classList.remove("is-locked");
     return;
   }
 
-  if (target.classList.contains("wall")) {
-    if (started) resetToStart();
+  hits++;
+  hitCount.textContent = `${hits} / ${hitsPerStage}`;
+  playfield.classList.add("is-locked");
+  gameMessage.textContent = hits === hitsPerStage
+    ? `ผ่านด่าน ${stage} แล้ว! เตรียมรับความเร็วที่เพิ่มขึ้น`
+    : "โดนแล้ว! เล็งใหม่ เป้ายังไม่หยุด";
+
+  if (hits < hitsPerStage) return;
+  if (stage === stageCount) {
+    showJumpscare();
     return;
   }
 
-  if (target.id === "finish" && started) {
-    level++;
-    started = false;
-    if (level > levels.length) {
-      completeGame();
-      return;
-    }
-    loadLevel();
-    instruction.textContent = "ด่านผ่านแล้ว! กลับไปที่ START เพื่อเล่นต่อ";
-    notice.textContent = `ผ่านด่าน ${level - 1} แล้ว — พร้อมสำหรับด่าน ${level} ไหม?`;
-  }
+  stage++;
+  hits = 0;
+  stageStartedAt = performance.now();
+  stagePhase = Math.random() * Math.PI * 2;
+  applyStageSettings();
+  stageText.textContent = `ด่าน ${stage} / ${stageCount}`;
+  hitCount.textContent = `${hits} / ${hitsPerStage}`;
+  playfield.classList.remove("is-locked");
+  statusText.textContent = `ด่าน ${stage} · ${stageSettings[stage - 1].label}`;
+  gameMessage.textContent = stage === stageCount
+    ? "ด่านสุดท้ายแล้ว เป้าจะเล็กและเร็วที่สุด!"
+    : `ด่าน ${stage} เริ่มแล้ว — ${stageSettings[stage - 1].label}`;
 }
 
-function handleTouchMove(event) {
-  if (event.pointerType !== "touch") return;
-  handleMazePointer({ target: document.elementFromPoint(event.clientX, event.clientY) });
+function applyStageSettings() {
+  const size = stageSettings[stage - 1].size;
+  target.style.width = `${size}px`;
+  target.style.height = `${size}px`;
 }
 
-function resetToStart() {
-  started = false;
-  mistakes++;
-  mistakesValue.textContent = String(mistakes);
-  instruction.textContent = "โดนกำแพงแล้ว กลับไปที่ START แล้วลองอีกครั้ง";
-  notice.textContent = "ไม่เป็นไร ค่อย ๆ ไปนะ";
-  maze.classList.remove("is-hit");
-  void maze.offsetWidth;
-  maze.classList.add("is-hit");
-  clearTimeout(hitTimeout);
-  hitTimeout = window.setTimeout(() => maze.classList.remove("is-hit"), 280);
+function handlePointerLeave(event) {
+  if (event.pointerType === "touch") return;
+  pointerX = null;
+  pointerY = null;
+  crosshair.style.display = "none";
 }
 
-function completeGame() {
-  finished = true;
-  clearInterval(timerId);
+function updateGame(timestamp) {
+  if (!isPlaying) return;
+  if (!lastFrame) lastFrame = timestamp;
+  lastFrame = timestamp;
+  if (stageStartedAt === null) stageStartedAt = timestamp;
+
+  const bounds = playfield.getBoundingClientRect();
+  const elapsedSeconds = (timestamp - stageStartedAt) / 1000;
+  const { speed, feint } = stageSettings[stage - 1];
+  const motionTime = elapsedSeconds * speed + stagePhase;
+  const centerX = bounds.width / 2;
+  const centerY = bounds.height / 2;
+  const targetX = centerX
+    + Math.sin(motionTime * 1.55 + Math.sin(motionTime * (1.2 + feint * 4)) * feint * .72) * bounds.width * .3
+    + Math.sin(motionTime * (2 + feint * 6)) * bounds.width * (.012 + feint * .033);
+  const targetY = centerY
+    + Math.cos(motionTime * 1.35 + Math.sin(motionTime * (1.4 + feint * 4.2)) * feint * .78) * bounds.height * .27
+    + Math.cos(motionTime * (1.8 + feint * 5.5)) * bounds.height * (.015 + feint * .035);
+  target.style.left = `${targetX}px`;
+  target.style.top = `${targetY}px`;
+
+  const totalHits = (stage - 1) * hitsPerStage + hits;
+  progressBar.style.width = `${(totalHits / (stageCount * hitsPerStage)) * 100}%`;
+  animationId = requestAnimationFrame(updateGame);
+}
+
+function showJumpscare() {
+  isPlaying = false;
+  isScaring = true;
   progressBar.style.width = "100%";
-  scare.style.display = "block";
-  sound.currentTime = 0;
-  sound.play().catch(() => {
-    document.getElementById("scareMessage").textContent = "กด Esc หรือแตะหน้าจอเพื่อกลับ (ไม่สามารถเล่นเสียงได้)";
+  statusText.textContent = "ผ่านครบทั้ง 5 ด่าน!";
+  gameMessage.textContent = "ยิงแม่นมาก — เตรียมรับเซอร์ไพรส์";
+  jumpscare.classList.add("is-visible");
+  scream.volume = 1;
+  scream.currentTime = 0;
+  scream.play().catch(() => {
+    document.getElementById("jumpscare-hint").textContent = "แตะหน้าจอหรือกด Esc เพื่อปิด (เปิดเสียงเพื่อได้ยินเอฟเฟกต์)";
   });
 }
 
-function closeSurprise() {
-  if (scare.style.display !== "block") return;
-  sound.pause();
-  sound.currentTime = 0;
-  scare.style.display = "none";
-  menu.style.display = "block";
-  game.style.display = "none";
+function dismissJumpscare() {
+  if (!isScaring) return;
+  isScaring = false;
+  jumpscare.classList.remove("is-visible");
+  scream.pause();
+  scream.currentTime = 0;
+  gameMessage.textContent = "คุณจ้องได้นิ่งมาก! หวังว่าจะไม่ตกใจนะ 😄";
+  if (document.fullscreenElement) {
+    document.exitFullscreen().catch(() => {
+      gameMessage.textContent = "กด Esc หรือ F11 เพื่อออกจากเต็มจอ";
+    });
+  }
 }
 
 document.getElementById("startButton").addEventListener("click", startGame);
-document.getElementById("restartButton").addEventListener("click", resetRun);
-maze.addEventListener("pointerover", handleMazePointer);
-maze.addEventListener("pointermove", handleTouchMove);
-scare.addEventListener("click", closeSurprise);
+document.getElementById("restartButton").addEventListener("click", resetGame);
+playfield.addEventListener("pointermove", handlePointerMove);
+playfield.addEventListener("pointerdown", event => {
+  handlePointerMove(event);
+  handleShot(event);
+});
+playfield.addEventListener("pointerleave", handlePointerLeave);
+jumpscare.addEventListener("click", dismissJumpscare);
+
 document.addEventListener("keydown", event => {
-  if (event.key === "Escape") closeSurprise();
+  if (event.key !== "Escape") return;
+  if (isScaring) {
+    dismissJumpscare();
+  } else if (document.fullscreenElement) {
+    document.exitFullscreen().catch(() => {
+      gameMessage.textContent = "ออกจากเต็มจอไม่สำเร็จ กด F11 เพื่อออกได้";
+    });
+  }
 });
 </script>
 </body>
